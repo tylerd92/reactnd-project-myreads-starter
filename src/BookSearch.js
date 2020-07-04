@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './App.css';
 
 class BookSearch extends Component {
+  state = {
+    query: ''
+  }
+
   render() {
     return (
       <div className="search-books">

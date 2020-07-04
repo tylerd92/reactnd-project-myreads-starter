@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 class Book extends Component {
+  handleOptionChange(value) {
+    this.props.changeShelf();
+  }
   
   render() {
     const { title, author, bookImage } = this.props;
