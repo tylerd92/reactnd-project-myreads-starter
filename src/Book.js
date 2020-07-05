@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 class Book extends Component {
-  handleOptionChange(value) {
-    this.props.changeShelf();
+
+  handleOptionChange(event) {
+    this.props.shelfStatus(this.props.title, event.target.value);
   }
   
   render() {
@@ -12,8 +13,8 @@ class Book extends Component {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookImage})` }}></div>
           <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>Move to...</option>
+            <select onChange={(event) => this.handleOptionChange(event)}>
+              <option value="move">Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
