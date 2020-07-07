@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import Book from './Book';
 
 class BookList extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    shelfTitle: PropTypes.string.isRequired,
+    changeShelf: PropTypes.func.isRequired
+  }
+
   render () {
     const { books, shelfTitle, changeShelf } = this.props;
     return (
@@ -15,8 +22,8 @@ class BookList extends Component {
                 <li key={book.title}>
                   <Book 
                     title={book.title} 
-                    author={book.author} 
-                    bookImage={book.thumbnail}
+                    authors={book.authors} 
+                    bookImage={book.imageLinks.smallThumbnail}
                     shelfStatus={changeShelf}
                   />
                 </li>
