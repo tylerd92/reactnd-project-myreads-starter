@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    authors: PropTypes.array.isRequired,
+    bookImage: PropTypes.string.isRequired,
+    shelfStatus: PropTypes.func.isRequired
+  }
 
   handleOptionChange(event) {
     this.props.shelfStatus(this.props.title, event.target.value);
   }
   
   render() {
-    const { title, author, bookImage } = this.props;
+    const { title, authors, bookImage } = this.props;
     return (
       <div className="book">
         <div className="book-top">
@@ -23,7 +30,7 @@ class Book extends Component {
           </div>
         </div>
       <div className="book-title">{ title }</div>
-      <div className="book-authors">{ author }</div>
+    <div className="book-authors">{ authors.map((author) => <p key={author}>{author}</p>) }</div>
       </div>
     );
   }
