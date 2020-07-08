@@ -4,8 +4,11 @@ import './App.css';
 import BookSearchResults from './BookSearchResults';
 
 class BookSearch extends Component {
-  state = {
-    query: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    }
   }
 
   updateQuery(query) {
@@ -46,7 +49,7 @@ class BookSearch extends Component {
         <div className="search-books-results">
           {
             this.state.query === '' ? <h2>Search Results Here</h2> : 
-            <BookSearchResults searchQuery={this.state.query} />
+            <BookSearchResults searchQuery={this.state.query} onUpdateBook={this.props.onUpdateBook} onSearchBooks={this.props.onSearchBooks} results={this.props.books} />
           }
         </div>
       </div>
