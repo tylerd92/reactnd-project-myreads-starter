@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
 
-/*
-needs some fine tuning
-certain search term causes an error
-in authors section 
-*/
 class BookSearchResults extends Component {
   constructor(props) {
     super(props);

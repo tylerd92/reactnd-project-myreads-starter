@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Book extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    authors: PropTypes.array.isRequired,
+    authors: PropTypes.array,
     bookImage: PropTypes.string.isRequired,
     shelfStatus: PropTypes.func.isRequired
   }
@@ -30,7 +30,10 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{ title }</div>
-        <div className="book-authors">{ authors.map((author) => <p key={author}>{author}</p>) }</div>
+        <div className="book-authors">
+          {typeof authors === 'undefined' ? <p>Unknown</p> :  authors.map((author) => <p key={author}>{author}</p>)}
+        </div>
+        
       </div>
     );
   }
