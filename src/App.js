@@ -9,7 +9,8 @@ class BooksApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      searchResults: []
     }
     this.getBooksByQuery = this.getBooksByQuery.bind(this);
     this.updateBook = this.updateBook.bind(this);
@@ -22,9 +23,9 @@ class BooksApp extends React.Component {
 
   getBooksByQuery(query) {
     BooksAPI.search(query)
-    .then((books) => {
+    .then((results) => {
       this.setState(() => ({
-        books: books
+        searchResults: results
       }));
     });
   }
@@ -62,7 +63,7 @@ class BooksApp extends React.Component {
             path='/search'
             render={({ history }) => (
               <BookSearch 
-                books={this.state.books}
+                books={this.state.searchResults}
                 onSearchBooks={this.getBooksByQuery} 
                 onUpdateBook={(books, bookUpdated, newStatus) => {
                   this.updateBook(books, bookUpdated, newStatus)
