@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
-import * as BooksAPI from './BooksAPI';
+
 /*
 needs some fine tuning
 certain search term causes an error
