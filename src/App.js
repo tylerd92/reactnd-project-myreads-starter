@@ -15,6 +15,8 @@ class BooksApp extends React.Component {
     this.getBooksByQuery = this.getBooksByQuery.bind(this);
     this.updateBook = this.updateBook.bind(this);
     this.getAllBooks = this.getAllBooks.bind(this);
+    this.getBookIndex = this.getBookIndex.bind(this);
+    this.addShelfToResult = this.addShelfToResult.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +48,22 @@ class BooksApp extends React.Component {
       });
   }
 
+  getBookIndex(abook) {
+    for (let i = 0; i < this.state.books.length; i++) {
+      if (abook.id === this.state.books[i].id) {
+        return i;
+      }
+    }
+    return NaN;
+  }
+
+  addShelfToResult(abook) {
+    const index = this.getBookIndex(abook);
+    if (!isNaN(index)) {
+      return { ...abook, shelf: this.state.books[index].shelf };
+    }
+  }
+
   render() {
     return (
       <div className="app">
@@ -64,7 +82,10 @@ class BooksApp extends React.Component {
             path='/search'
             render={({ history }) => (
               <BookSearch 
-                books={this.state.searchResults}
+                books={this.state.searchResults.map((result) => (
+                    this.state.books.filter((book) => (book.id === result.id)).length > 0 ? 
+                    this.addShelfToResult(result) : { ...result, shelf: 'none'}
+                ))}
                 onSearchBooks={this.getBooksByQuery} 
                 onUpdateBook={(books, bookUpdated, newStatus) => {
                   this.updateBook(books, bookUpdated, newStatus)

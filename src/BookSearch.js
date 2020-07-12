@@ -17,8 +17,6 @@ class BookSearch extends Component {
     }))
   }
 
-  
-
   render() {
     return (
       <div className="search-books">
@@ -49,7 +47,12 @@ class BookSearch extends Component {
         <div className="search-books-results">
           {
             this.state.query === '' ? <h2>Search Results Here</h2> : 
-            <BookSearchResults searchQuery={this.state.query} onUpdateBook={this.props.onUpdateBook} onSearchBooks={this.props.onSearchBooks} results={this.props.books} />
+            <BookSearchResults 
+              searchQuery={this.state.query} 
+              onUpdateBook={this.props.onUpdateBook} 
+              onSearchBooks={this.props.onSearchBooks} 
+              results={this.props.books}
+            />
           }
         </div>
       </div>

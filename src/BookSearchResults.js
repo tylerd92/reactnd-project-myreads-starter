@@ -40,6 +40,7 @@ class BookSearchResults extends Component {
               title={book.title} 
               authors={book.authors} 
               bookImage={book.imageLinks.smallThumbnail}
+              shelf={book.shelf}
               shelfStatus={this.handleBookStatus}
             />
           ))
