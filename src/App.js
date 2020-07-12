@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookSearch from './BookSearch'
 import MyReads from './MyReads'
+import NotFound from './NotFound'
 
 class BooksApp extends React.Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class BooksApp extends React.Component {
               />
             )}
           />
+          <Route component={NotFound} />
         </div>
       </div>
     )
