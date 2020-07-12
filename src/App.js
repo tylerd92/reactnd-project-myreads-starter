@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookSearch from './BookSearch'
@@ -69,33 +69,35 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <div>
-          <Route 
-            exact path='/'
-            render={() => (
-              <MyReads 
-                books={this.state.books} 
-                getBooks={this.getAllBooks}
-                updateBook={this.updateBook} 
-              />
-            )}
-          />
-          <Route 
-            path='/search'
-            render={({ history }) => (
-              <BookSearch 
-                books={this.state.searchResults.map((result) => (
-                    this.state.books.filter((book) => (book.id === result.id)).length > 0 ? 
-                    this.addShelfToResult(result) : { ...result, shelf: 'none'}
-                ))}
-                onSearchBooks={this.getBooksByQuery} 
-                onUpdateBook={(books, bookUpdated, newStatus) => {
-                  this.updateBook(books, bookUpdated, newStatus)
-                  history.push('/')
-                }}
-              />
-            )}
-          />
-          <Route component={NotFound} />
+          <Switch>
+            <Route 
+              exact path='/'
+              render={() => (
+                <MyReads 
+                  books={this.state.books} 
+                  getBooks={this.getAllBooks}
+                  updateBook={this.updateBook} 
+                />
+              )}
+            />
+            <Route 
+              path='/search'
+              render={({ history }) => (
+                <BookSearch 
+                  books={this.state.searchResults.map((result) => (
+                      this.state.books.filter((book) => (book.id === result.id)).length > 0 ? 
+                      this.addShelfToResult(result) : { ...result, shelf: 'none'}
+                  ))}
+                  onSearchBooks={this.getBooksByQuery} 
+                  onUpdateBook={(books, bookUpdated, newStatus) => {
+                    this.updateBook(books, bookUpdated, newStatus)
+                    history.push('/')
+                  }}
+                />
+              )}
+            />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </div>
     )
